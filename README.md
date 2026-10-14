@@ -62,7 +62,7 @@ To run entirely on CPU:
 python reproduce.py --download --device cpu
 ```
 
-CPU execution can be substantially slower. CUDA execution fails clearly if CUDA is unavailable; it does not silently fall back to CPU. The downloads total approximately 0.9 GB; allow several GB of free disk space for prepared data and checkpoints. The recorded model-training loops plus own-vector training took about 10 minutes on the recorded GPU environment, excluding downloads, preprocessing, evaluation, and I/O. This is a historical measurement, not a runtime guarantee for a different machine.
+CPU execution can be substantially slower. CUDA execution fails clearly if CUDA is unavailable; it does not silently fall back to CPU. The downloads total approximately 0.9 GB; allow several GB of free disk space for prepared data and checkpoints. The recorded model-training loops plus own-vector training took about 12 minutes on the recorded GPU environment, excluding downloads, preprocessing, evaluation, and I/O. This is a historical measurement, not a runtime guarantee for a different machine.
 
 Preview the commands without downloads, training, or filesystem changes:
 
