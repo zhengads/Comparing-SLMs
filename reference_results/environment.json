@@ -1,0 +1,38 @@
+{
+  "description": "Recorded experiment environment and dataset identity; not a newly executed reproduction.",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-5.15.0-25-generic-x86_64-with-glibc2.35",
+    "torch_threads": 4,
+    "packages": {
+      "torch": "2.12.1+cu130",
+      "numpy": "1.26.4",
+      "scipy": "1.13.1",
+      "scikit-learn": "1.5.2",
+      "matplotlib": "3.9.2"
+    },
+    "torch_cuda_build": "13.0",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 4080 SUPER",
+        "total_bytes": 33796456448
+      }
+    ]
+  },
+  "data_fingerprint": "f8c2391b65a73cb56e39d892f73eb55ebc75aab9a97ca142544d79d6cd01b42b",
+  "source_sha256": "c40f74a18d3b61f90feba1e17730e0d38e8b97c05fde7008942e91923d1658fe",
+  "tokenizer": "html-lower-word-apostrophe-digit-punctuation-v1",
+  "seed": 4213,
+  "data_config": {
+    "lm_train": 10000,
+    "lm_val": 1000,
+    "lm_test": 1000,
+    "cls_train": 8000,
+    "cls_val": 2000,
+    "cls_test": 5000,
+    "max_lm_tokens": 512,
+    "vocab_size": 12000,
+    "min_count": 2
+  }
+}

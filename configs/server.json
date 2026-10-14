@@ -1,0 +1,31 @@
+{
+  "seed": 4213,
+  "data": {
+    "lm_train": 10000, "lm_val": 1000, "lm_test": 1000,
+    "cls_train": 8000, "cls_val": 2000, "cls_test": 5000,
+    "max_lm_tokens": 512, "vocab_size": 12000, "min_count": 2
+  },
+  "model": {
+    "embedding_dim": 100, "hidden_dim": 256, "layers": 2,
+    "heads": 4, "ff_dim": 512, "dropout": 0.2, "context_length": 128
+  },
+  "train": {
+    "epochs": 5, "batch_size": 32, "learning_rate": 0.001,
+    "weight_decay": 0.01, "grad_clip": 1.0, "num_workers": 0,
+    "max_train_batches": null, "max_val_batches": null
+  },
+  "ngram": {"order": 3, "alpha": 0.1, "interpolation": 0.8},
+  "embeddings": {
+    "epochs": 3, "window": 3, "negatives": 5, "batch_size": 2048,
+    "learning_rate": 0.003, "subsample": 0.001
+  },
+  "evaluation": {
+    "prompts": ["the movie was", "the acting was good but", "i would recommend this film because"],
+    "max_new_tokens": 64, "temperature": 0.8, "top_k": 40,
+    "benchmark_tokens": 32, "benchmark_repeats": 3
+  },
+  "probe": {
+    "max_tokens": 128, "batch_size": 32, "pooling": "mean",
+    "c_values": [0.01, 0.1, 1.0, 10.0], "max_iter": 2000
+  }
+}
