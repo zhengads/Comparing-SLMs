@@ -17,7 +17,7 @@ def build_commands(args):
     config = Path(args.config).resolve()
     data, embeddings, experiment = output / "prepared", output / "embeddings", output / "experiment"
     python = sys.executable
-    cli = [python, "-m", "smalllm"]
+    cli = [python, "-m", "core"]
     suite = [python, str(ROOT / "scripts/run_experiments.py"), "--config", str(config),
              "--data", str(data), "--embeddings", str(embeddings), "--root", str(experiment),
              "--device", args.device]
@@ -29,6 +29,9 @@ def build_commands(args):
             commands.append(cli + ["download", "--asset", asset, "--dest", str(raw)])
     commands.append(cli + ["prepare", "--archive", str(raw / "aclImdb_v1.tar.gz"),
                            "--output", str(data), "--config", str(config)])
+    commands.append(cli + ["verify-splits", "--data", str(data),
+                           "--reference", str(ROOT / "dataset_splits/manifest.json"),
+                           "--archive", str(raw / "aclImdb_v1.tar.gz")])
     commands.append(cli + ["embeddings", "--method", "own", "--data", str(data),
                            "--config", str(config), "--device", args.device, "--output", str(embeddings / "own")])
     commands.append(cli + ["embeddings", "--method", "glove", "--source", str(raw / "glove.6B.zip"),
@@ -58,7 +61,7 @@ def main(argv=None):
         print("Dry run only. No files downloaded and no experiments executed.")
         return
     # Validate the installed environment and requested device before large downloads.
-    from smalllm.common import get_device, load_config
+    from core.common import get_device, load_config
     load_config(args.config)
     get_device(args.device)
     output.mkdir(parents=True, exist_ok=True)

@@ -60,7 +60,7 @@ def seed_all(seed):
 
 def get_device(name):
     if name == "cuda" and not torch.cuda.is_available():
-        raise RuntimeError("CUDA requested but unavailable. Run 'python -m smalllm doctor'; CPU must be selected explicitly.")
+        raise RuntimeError("CUDA requested but unavailable. Run 'python -m core doctor'; CPU must be selected explicitly.")
     if name not in {"cpu", "cuda"}:
         raise ValueError("Device must be cpu or cuda")
     return torch.device(name)

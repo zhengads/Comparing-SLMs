@@ -42,7 +42,7 @@ def download(asset, destination):
 
 
 def parser():
-    p = argparse.ArgumentParser(description="SmallLM Lab: explicit, reproducible experiment stages")
+    p = argparse.ArgumentParser(description="SLM Core: explicit, reproducible experiment stages")
     p.add_argument("--threads", type=int, default=4, help="PyTorch CPU threads (default: 4)")
     sub = p.add_subparsers(dest="command", required=True)
     sub.add_parser("doctor", help="Inspect local environment without training")
@@ -53,6 +53,10 @@ def parser():
     prepare.add_argument("--archive", required=True)
     prepare.add_argument("--output", required=True)
     prepare.add_argument("--synthetic", action="store_true", help="Mark software-test fixture, not experiment evidence")
+    verify = sub.add_parser("verify-splits", help="Verify exact ordered reviews against the published experiment")
+    verify.add_argument("--data", required=True)
+    verify.add_argument("--reference", default="dataset_splits/manifest.json")
+    verify.add_argument("--archive", help="Optionally verify the raw IMDb archive bytes as well")
     own = sub.add_parser("embeddings", help="Train own Skip-gram or import existing GloVe file/ZIP")
     own.add_argument("--method", choices=["own", "glove"], required=True)
     own.add_argument("--source", help="Existing GloVe text file or ZIP; no download")
@@ -101,6 +105,9 @@ def main(argv=None):
             result["nvidia_smi"] = "not available"
     elif args.command == "download":
         result = download(args.asset, args.dest)
+    elif args.command == "verify-splits":
+        from .splits import verify_splits
+        result = verify_splits(args.data, args.reference, args.archive)
     elif args.command == "prepare":
         from .data import prepare
         result = prepare(args.archive, args.output, load_config(args.config), args.synthetic)

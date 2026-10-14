@@ -12,3 +12,5 @@ logs/
 *.zip
 *.tar.gz
 .env
+build/
+dist/
