@@ -1,4 +1,4 @@
-# Comapring SLMs
+# Comparing SLMs
 
 **DSA4213 Assignment 1** — Comparing small language models: prediction, embeddings, and sentiment transfer.
 
@@ -11,8 +11,8 @@ This repository contains the experimental implementation, fixed configuration, a
 Use Python **3.12** (the recorded experiment used 3.12.3). Run these commands in a terminal:
 
 ```bash
-git clone https://github.com/zhengads/Comapring-SLMs.git
-cd Comapring-SLMs
+git clone https://github.com/zhengads/Comparing-SLMs.git
+cd Comparing-SLMs
 python -m venv .venv
 ```
 
