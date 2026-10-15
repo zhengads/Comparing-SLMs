@@ -97,6 +97,7 @@ The full fixed recipe is in [`configs/server.json`](configs/server.json):
 - Exact normalized-text deduplication; all labeled texts excluded from the LM pool. This does not establish semantic or external-pretraining independence.
 - Vocabulary: 12,000 entries, built only on LM training text. At most 512 content tokens per LM review; within-review prediction blocks of length 128.
 - Neural models: 100-dimensional embeddings, two layers of width 256, five epochs, seed 4213, batch size 32, dropout 0.2, AdamW. Validation CE selects checkpoints.
+- Seeds: 4213 for data preparation and model experiments; the three qualitative generation prompts use seeds 4213, 4214, and 4215 (the base seed plus the prompt index).
 - Own embeddings: three epochs of Skip-gram with negative sampling, trained only on LM training text.
 - Sentiment: first 128 content tokens, masked mean pooling, frozen encoders. Standardization is fitted on training features; validation macro-F1 selects regularization C. Validation is not merged into training afterward.
 - Test evaluation occurs after training and validation selection, with no test-driven parameter search in the launcher.
